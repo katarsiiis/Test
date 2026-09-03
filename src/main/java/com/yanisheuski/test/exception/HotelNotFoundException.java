@@ -1,4 +1,8 @@
 package com.yanisheuski.test.exception;
 
-public class йвуц {
+public class HotelNotFoundException extends RuntimeException {
+
+    public HotelNotFoundException(Long id) {
+        super("Hotel with id " + id + " was not found");
+    }
 }

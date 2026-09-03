@@ -1,4 +1,10 @@
 package com.yanisheuski.test.dto.response;
 
-public class SFSD {
+public record AddressResponse(
+        String houseNumber,
+        String street,
+        String city,
+        String country,
+        String postCode
+) {
 }

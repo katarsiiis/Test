@@ -3,7 +3,10 @@ package com.yanisheuski.test.controller;
 import com.yanisheuski.test.dto.response.HotelShortResponse;
 import com.yanisheuski.test.service.HotelService;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -13,7 +16,9 @@ public class SearchController {
 
     private final HotelService hotelService;
 
-    public SearchController(HotelService hotelService) {
+    public SearchController(
+            HotelService hotelService
+    ) {
         this.hotelService = hotelService;
     }
 

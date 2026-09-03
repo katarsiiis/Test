@@ -30,11 +30,11 @@ class HistogramServiceTest {
     }
 
     @Test
-    void histogramByBrand_shouldReturnCorrectResult() {
+    void histogramByBrandShouldReturnCorrectResult() {
 
         when(hotelRepository.histogramByBrand())
                 .thenReturn(
-                        List.of(
+                        List.<Object[]>of(
                                 new Object[]{"Hilton", 3L},
                                 new Object[]{"Marriott", 2L}
                         )
@@ -49,11 +49,11 @@ class HistogramServiceTest {
     }
 
     @Test
-    void histogramByCity_shouldReturnCorrectResult() {
+    void histogramByCityShouldReturnCorrectResult() {
 
         when(hotelRepository.histogramByCity())
                 .thenReturn(
-                        List.of(
+                        List.<Object[]>of(
                                 new Object[]{"Minsk", 5L},
                                 new Object[]{"Mogilev", 2L}
                         )
@@ -68,11 +68,11 @@ class HistogramServiceTest {
     }
 
     @Test
-    void histogramByCountry_shouldReturnCorrectResult() {
+    void histogramByCountryShouldReturnCorrectResult() {
 
         when(hotelRepository.histogramByCountry())
                 .thenReturn(
-                        List.of(
+                        List.<Object[]>of(
                                 new Object[]{"Belarus", 10L},
                                 new Object[]{"Poland", 4L}
                         )
@@ -87,20 +87,18 @@ class HistogramServiceTest {
     }
 
     @Test
-    void histogramByAmenities_shouldReturnCorrectResult() {
+    void histogramByAmenitiesShouldReturnCorrectResult() {
 
         when(hotelRepository.histogramByAmenities())
                 .thenReturn(
-                        List.of(
+                        List.<Object[]>of(
                                 new Object[]{"Free WiFi", 20L},
                                 new Object[]{"Free parking", 15L}
                         )
                 );
 
         Map<String, Long> result =
-                histogramService.getHistogram(
-                        "amenities"
-                );
+                histogramService.getHistogram("amenities");
 
         assertThat(result)
                 .containsEntry("Free WiFi", 20L)
@@ -108,11 +106,11 @@ class HistogramServiceTest {
     }
 
     @Test
-    void histogram_shouldBeCaseInsensitive() {
+    void histogramShouldBeCaseInsensitive() {
 
         when(hotelRepository.histogramByCity())
                 .thenReturn(
-                        List.of(
+                        List.<Object[]>of(
                                 new Object[]{"Minsk", 5L}
                         )
                 );
@@ -125,12 +123,10 @@ class HistogramServiceTest {
     }
 
     @Test
-    void histogram_shouldThrowExceptionForInvalidParameter() {
+    void histogramShouldThrowExceptionForInvalidParameter() {
 
         assertThatThrownBy(
-                () -> histogramService.getHistogram(
-                        "unknown"
-                )
+                () -> histogramService.getHistogram("unknown")
         )
                 .isInstanceOf(
                         InvalidHistogramParameterException.class
@@ -138,7 +134,7 @@ class HistogramServiceTest {
     }
 
     @Test
-    void histogram_shouldThrowExceptionForBlankParameter() {
+    void histogramShouldThrowExceptionForBlankParameter() {
 
         assertThatThrownBy(
                 () -> histogramService.getHistogram(" ")

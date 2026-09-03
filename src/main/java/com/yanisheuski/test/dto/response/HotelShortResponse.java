@@ -1,4 +1,10 @@
-package com.yanisheuski.test.dto.request;
+package com.yanisheuski.test.dto.response;
 
-public class GUKU {
+public record HotelShortResponse(
+        Long id,
+        String name,
+        String description,
+        String address,
+        String phone
+) {
 }

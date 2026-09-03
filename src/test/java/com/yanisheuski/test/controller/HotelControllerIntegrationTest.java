@@ -1,16 +1,17 @@
 package com.yanisheuski.test.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yanisheuski.test.entity.Address;
 import com.yanisheuski.test.entity.ArrivalTime;
 import com.yanisheuski.test.entity.Contacts;
 import com.yanisheuski.test.entity.Hotel;
 import com.yanisheuski.test.repository.HotelRepository;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -19,6 +20,7 @@ import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -30,9 +32,6 @@ class HotelControllerIntegrationTest {
 
     @Autowired
     private HotelRepository hotelRepository;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @BeforeEach
     void setUp() {
@@ -410,15 +409,11 @@ class HotelControllerIntegrationTest {
             throws Exception {
 
         mockMvc.perform(
-                        get(
-                                "/property-view/histogram/amenities"
-                        )
+                        get("/property-view/histogram/amenities")
                 )
+                .andExpect(status().isOk())
                 .andExpect(
-                        status().isOk()
-                )
-                .andExpect(
-                        jsonPath("$.Free WiFi")
+                        jsonPath("$['Free WiFi']")
                                 .value(1)
                 );
     }

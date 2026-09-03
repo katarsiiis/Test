@@ -1,4 +1,7 @@
 package com.yanisheuski.test.dto.response;
 
-public class VSVSD {
+public record ContactsResponse(
+        String phone,
+        String email
+) {
 }
